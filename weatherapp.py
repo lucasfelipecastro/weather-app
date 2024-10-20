@@ -8,8 +8,8 @@ class WeatherApp(QWidget):
     def __init__(self):
         super().__init__()
 
-def main():
-    print("Yeah")
-
 if __name__ ==  "__main__":
-    main()
+     app = QApplication(sys.argv)
+     weather_app = WeatherApp()
+     weather_app.show()
+     sys.exit(app.exec_())
