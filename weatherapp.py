@@ -88,26 +88,32 @@ class WeatherApp(QWidget):
         except requests.exceptions.HTTPError as http_error:
             match response.status_code:
                 case 400:
-                    print("Bad request\nPlease check your input")
+                    self.display_error("Bad request:\nPlease check your input")
                 case 401:
-                    print("Unauthorized\nInvalid API key")
+                    self.display_error("Unauthorized:\nInvalid API key")
                 case 403:
-                    print("Forbidden\nAcess in denied")
+                    self.display_error("Forbidden:\nAcess in denied")
                 case 404:
-                    print("Not found\nCity not found")
+                   self.display_error("Not found:\nCity not found")
                 case 500:
-                    print("Internal Server Error\nPlease try again later")
+                   self.display_error("Internal Server Error:\nPlease try again later")
                 case 502:
-                    print("Bad Gateway\nInvalid response from the server")
+                    self.display_error("Bad Gateway:\nInvalid response from the server")
                 case 503:
-                    print("Service Unavailable\nServer is down")
+                    self.display_error("Service Unavailable:\nServer is down")
                 case 504:   
-                    print("Gateway Timeout\nNo response from the server")
+                    self.display_error("Gateway Timeout:\nNo response from the server")
                 case _:
-                    print("HTTP error occured\n{http_error}")
+                    self.display_error("HTTP error occured:\n{http_error}")
         
-        except requests.exceptions.RequestException: 
-            pass
+        except requests.exceptions.ConnectionError:
+            self.display_error("Connection Error:\nCheck your internet connection")
+        except requests.exceptions.Timeout: 
+            self.display_error("Timeout Error:\nThe request your timed out")
+        except requests.exceptions.TooManyRedirects: 
+            self.display_error("Too many redirects:\nCheck the URL")
+        except requests.exceptions.RequestException as req_error:
+            self.display_error(f"Request Error:\n {req_error}")
 
     def display_error(self, message):
         pass
