@@ -116,11 +116,16 @@ class WeatherApp(QWidget):
             self.display_error(f"Request Error:\n {req_error}")
 
     def display_error(self, message):
-        pass
+        self.temperature_label.setStyleSheet("font-size: 30px;")
+        self.temperature_label.setText(message)
 
     def display_weather(self, data):
-        print(data)
-    
+        self.temperature_label.setStyleSheet("font-size: 75px;")
+        temperature_k = data["main"]["temp"]
+        temperature_c = temperature_k - 273.15
+        temperature_f = (temperature_k * 9/5) - 459.67
+
+        self.temperature_label.setText(f"{round(temperature_f)}ºF")
 if __name__ ==  "__main__":
      app = QApplication(sys.argv)
      weather_app = WeatherApp()
