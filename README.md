@@ -30,7 +30,7 @@ To install PyQt5 and requests, you can run:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/lucasfelipecastro/weather-app.git
+    git clone https://github.com/lucasfelipecastro/weather-app
     cd weather-app
     ```
     
