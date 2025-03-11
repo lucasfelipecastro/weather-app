@@ -42,7 +42,7 @@ To install PyQt5 and requests, you can run:
 3. Run the application:
     
     ```bash
-    python weather_app.py
+    python weatherapp.py
     ```
 
 4. Type a city name in the input field and click "Get Weather" to see current weather data.
